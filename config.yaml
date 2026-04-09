@@ -1,24 +1,56 @@
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 8.8.8.8
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: false
+
 proxies:
-  - name: my-node
+  - name: ss-node
+    type: ss
+    server: 108.61.201.215
+    port: 8388
+    cipher: aes-128-gcm
+    password: iat3j75fz4wfFNM6ZTu9FXWf
+    udp: true
+
+  - name: my-node-vless
     type: vless
     server: 108.61.201.215
     port: 443
     uuid: 0224be37-020d-4de6-8aaf-af3558d4ed56
+    packet-encoding: xudp
+    encryption: ""
     network: tcp
     udp: true
     tls: true
     servername: www.google.com
-    flow: xtls-rprx-vision
     client-fingerprint: chrome
     reality-opts:
       public-key: IljRJexpHv1zORzZ6xFCI2U9RwgezxlKpqniuQDsEzA
       short-id: 123456
 
 proxy-groups:
+  - name: GLOBAL
+    type: select
+    proxies:
+      - DIRECT
+      - ss-node
+      - my-node-vless
+
   - name: auto
     type: select
     proxies:
-      - my-node
+      - DIRECT
+      - ss-node
+      - my-node-vless
 
 rules:
-  - MATCH,auto
+  - MATCH,GLOBAL
