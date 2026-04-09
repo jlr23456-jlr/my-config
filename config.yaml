@@ -5,12 +5,15 @@ proxies:
     port: 443
     uuid: 0224be37-020d-4de6-8aaf-af3558d4ed56
     network: tcp
-    tls: false
+    udp: true
+    tls: true
     servername: www.google.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    skip-cert-verify: true
     reality-opts:
       public-key: IljRJexpHv1zORzZ6xFCI2U9RwgezxlKpqniuQDsEzA
       short-id: 123456
-    client-fingerprint: chrome
 
 proxy-groups:
   - name: auto
