@@ -13,6 +13,14 @@ dns:
     geoip: false
 
 proxies:
+  - name: hy2-node
+    type: hysteria2
+    server: 108.61.201.215
+    port: 443
+    password: OQ5Jl7zl7X3BMWpB_8xHXbwI
+    skip-cert-verify: true
+    sni: 108.61.201.215
+
   - name: ss-node
     type: ss
     server: 108.61.201.215
@@ -22,17 +30,27 @@ proxies:
     udp: true
 
 proxy-groups:
+  - name: auto
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - hy2-node
+      - ss-node
+
   - name: GLOBAL
     type: select
     proxies:
-      - DIRECT
+      - auto
+      - hy2-node
       - ss-node
-
-  - name: auto
-    type: select
-    proxies:
       - DIRECT
-      - ss-node
 
 rules:
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - GEOIP,CN,DIRECT
   - MATCH,GLOBAL
