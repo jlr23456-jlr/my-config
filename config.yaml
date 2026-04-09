@@ -5,7 +5,7 @@ proxies:
     port: 443
     uuid: 0224be37-020d-4de6-8aaf-af3558d4ed56
     network: tcp
-    tls: true
+    tls: false
     servername: www.google.com
     reality-opts:
       public-key: IljRJexpHv1zORzZ6xFCI2U9RwgezxlKpqniuQDsEzA
