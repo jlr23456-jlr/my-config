@@ -1,0 +1,21 @@
+proxies:
+  - name: my-node
+    type: vless
+    server: 108.61.201.215
+    port: 443
+    uuid: 0224be37-020d-4de6-8aaf-af3558d4ed56
+    network: tcp
+    tls: true
+    servername: www.google.com
+    reality-opts:
+      public-key: IljRJexpHv1zORzZ6xFCI2U9RwgezxlKpqniuQDsEzA
+      short-id: 123456
+
+proxy-groups:
+  - name: auto
+    type: select
+    proxies:
+      - my-node
+
+rules:
+  - MATCH,auto
