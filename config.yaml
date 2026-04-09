@@ -13,7 +13,7 @@ dns:
     geoip: false
 
 proxies:
-  - name: hy2-node
+  - name: 邪恶小鼠
     type: hysteria2
     server: 108.61.201.215
     port: 443
@@ -21,7 +21,7 @@ proxies:
     skip-cert-verify: true
     sni: 108.61.201.215
 
-  - name: ss-node
+  - name: 霸气小鼠
     type: ss
     server: 108.61.201.215
     port: 8388
@@ -30,20 +30,20 @@ proxies:
     udp: true
 
 proxy-groups:
-  - name: auto
+  - name: 自动切换
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - hy2-node
-      - ss-node
+      - 邪恶小鼠
+      - 霸气小鼠
 
-  - name: GLOBAL
+  - name: 节点选择
     type: select
     proxies:
-      - auto
-      - hy2-node
-      - ss-node
+      - 自动切换
+      - 邪恶小鼠
+      - 霸气小鼠
       - DIRECT
 
 rules:
@@ -53,4 +53,4 @@ rules:
   - IP-CIDR,192.168.0.0/16,DIRECT
   - DOMAIN-SUFFIX,local,DIRECT
   - GEOIP,CN,DIRECT
-  - MATCH,GLOBAL
+  - MATCH,节点选择
