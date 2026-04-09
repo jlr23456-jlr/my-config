@@ -21,36 +21,18 @@ proxies:
     password: iat3j75fz4wfFNM6ZTu9FXWf
     udp: true
 
-  - name: my-node-vless
-    type: vless
-    server: 108.61.201.215
-    port: 443
-    uuid: 0224be37-020d-4de6-8aaf-af3558d4ed56
-    packet-encoding: xudp
-    encryption: ""
-    network: tcp
-    udp: true
-    tls: true
-    servername: www.google.com
-    client-fingerprint: chrome
-    reality-opts:
-      public-key: IljRJexpHv1zORzZ6xFCI2U9RwgezxlKpqniuQDsEzA
-      short-id: 123456
-
 proxy-groups:
   - name: GLOBAL
     type: select
     proxies:
       - DIRECT
       - ss-node
-      - my-node-vless
 
   - name: auto
     type: select
     proxies:
       - DIRECT
       - ss-node
-      - my-node-vless
 
 rules:
   - MATCH,GLOBAL
