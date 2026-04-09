@@ -10,7 +10,6 @@ proxies:
     servername: www.google.com
     flow: xtls-rprx-vision
     client-fingerprint: chrome
-    skip-cert-verify: true
     reality-opts:
       public-key: IljRJexpHv1zORzZ6xFCI2U9RwgezxlKpqniuQDsEzA
       short-id: 123456
